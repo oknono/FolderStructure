@@ -1,5 +1,6 @@
 import type { NodeModel } from "./types";
 import "./FolderStructure.css";
+import SingleNode from "./SingleNode";
 
 interface FSProps {
   nodes: NodeModel[];
@@ -10,18 +11,11 @@ export default function FolderStructure({ nodes }: FSProps) {
     return <p>No data to show</p>;
   }
 
-  function renderSingleNode(node: NodeModel) {
-    return (
-      <li key={node.id} className="node-item">
-        <span className="folder-icon" aria-label="Folder" role="img" />
-        New Folder
-      </li>
-    );
-  }
-
   return (
     <ul role="tree" className="outer-list">
-      {nodes.map((node: NodeModel) => renderSingleNode(node))}
+      {nodes.map((node: NodeModel) => (
+        <SingleNode key={node.id} node={node} />
+      ))}
     </ul>
   );
 }
