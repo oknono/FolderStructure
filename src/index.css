@@ -1,13 +1,22 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  color: #242424;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-text-dark: #242424;
+  --color-text-light: white;
+  --color-background-dark: black;
+  --color-background-light: white;
+  --spacing-large: 1rem;
+  --spacing-medium: 0.5rem;
+  --spacing-small: 0.25rem;
 }
 
-body {
+/* Standard reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
   margin: 0;
 }

@@ -1,0 +1,17 @@
+header {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-light);
+  padding: var(--spacing-large);
+}
+
+.folder-maker-container {
+  margin: var(--spacing-small);
+}
+
+button {
+  color: var(--color-text-light);
+  background-color: var(--color-background-dark);
+  border: none;
+  padding: var(--spacing-medium);
+  border-radius: var(--spacing-medium);
+}
