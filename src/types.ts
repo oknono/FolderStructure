@@ -1,3 +1,5 @@
+// TODO: Add a FileNode and a FolderNode?
+
 export interface NodeModel {
   id: string;
   type: NodeType;
