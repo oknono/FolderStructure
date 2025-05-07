@@ -2,6 +2,7 @@ import type { NodeModel } from "./types";
 import "./FolderStructure.css";
 import SingleNode from "./SingleNode";
 import type { JSX } from "react";
+import React from "react";
 
 interface FSProps {
   nodes: NodeModel[];
@@ -21,28 +22,29 @@ export default function FolderStructure({
   function renderSingleNode(
     node: NodeModel,
     addNode: (node: NodeModel, id: string) => void,
-    deleteNode: (id: string) => void,
-    isRoot: boolean = false
+    deleteNode: (id: string) => void
   ): JSX.Element {
-    if (node.type === "folder" && !isRoot) {
+    if (node.type === "folder") {
       return (
-        <ul role="tree">
+        <React.Fragment key={node.id}>
           <SingleNode
             key={node.id}
             node={node}
             addNode={addNode}
             deleteNode={deleteNode}
           />
-          {node.children &&
-            node.children.length > 0 &&
-            node.children.map((child: NodeModel) =>
-              renderSingleNode(child, addNode, deleteNode, false)
-            )}
-        </ul>
+          <ul>
+            {node.children &&
+              node.children.length > 0 &&
+              node.children.map((child: NodeModel) =>
+                renderSingleNode(child, addNode, deleteNode)
+              )}
+          </ul>
+        </React.Fragment>
       );
     } else {
       return (
-        <>
+        <React.Fragment key={node.id}>
           <SingleNode
             key={node.id}
             node={node}
@@ -52,17 +54,17 @@ export default function FolderStructure({
           {node.children &&
             node.children.length > 0 &&
             node.children.map((child: NodeModel) =>
-              renderSingleNode(child, addNode, deleteNode, false)
+              renderSingleNode(child, addNode, deleteNode)
             )}
-        </>
+        </React.Fragment>
       );
     }
   }
 
   return (
-    <ul role="tree" className="outer-list">
+    <ul className="outer-list">
       {nodes.map((node: NodeModel) =>
-        renderSingleNode(node, addNode, deleteNode, true)
+        renderSingleNode(node, addNode, deleteNode)
       )}
     </ul>
   );
