@@ -1,8 +1,8 @@
 import { useState } from "react";
 import FolderStructure from "./FolderStructure";
-import deleteNodeById from "./helper/deleteNoteById";
 import type { NodeModel } from "./types";
 import "./App.css";
+import { deleteNodeById } from "./helper/helpers";
 
 function App() {
   const [nodes, setNodes] = useState<NodeModel[]>([]);
@@ -11,6 +11,13 @@ function App() {
     const id = String(Date.now()); //TODO: okay for now, replace with more robust solution
     const newFolder: NodeModel = { type: "folder", id: id };
     setNodes((prev) => [...prev, newFolder]);
+  }
+
+  function addNode(newNode: NodeModel, parentNodeId: string): void {
+    // TO IMPLEMENT
+    console.log(
+      `Adding new Node with id ${newNode.id} as child to ${parentNodeId}`
+    );
   }
 
   function deleteNode(id: string): void {
@@ -25,7 +32,11 @@ function App() {
       </header>
       <div className="folder-maker-container">
         <button onClick={addRootFolder}>Add folder to Root</button>
-        <FolderStructure nodes={nodes} deleteNode={deleteNode} />
+        <FolderStructure
+          nodes={nodes}
+          deleteNode={deleteNode}
+          addNode={addNode}
+        />
       </div>
     </>
   );

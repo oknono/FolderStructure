@@ -2,29 +2,23 @@
   padding-top: var(--spacing-large);
 }
 
-.folder-icon {
+[class$="-icon"] {
   display: inline-block;
-  width: var(--icon-size);
-  height: var(--icon-size);
-  margin-right: var(--spacing-small);
-  margin-left: var(--spacing-small);
+  width: 1rem;
+  height: 1rem;
+  margin-right: 4px;
+  margin-left: 4px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+}
+
+.folder-icon {
   background-image: url("assets/folder-open-regular.svg");
 }
 
-.node-item {
-  height: 2rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin-left: var(--spacing-medium);
-}
-
-.node-item:marker {
-  content: "";
+.file-icon {
+  background-image: url("assets/file-regular.svg");
 }
 
 .outer-list {

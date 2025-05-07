@@ -5,9 +5,10 @@ import "./SingleNode.css";
 interface NodeProps {
   node: NodeModel;
   deleteNode: (id: string) => void;
+  addNode: (node: NodeModel, id: string) => void;
 }
 
-export default function SingleNode({ node, deleteNode }: NodeProps) {
+export default function SingleNode({ node, deleteNode, addNode }: NodeProps) {
   const [canEdit, setCanEdit] = useState(true);
   const [name, setName] = useState(node.name || "");
 
@@ -21,9 +22,29 @@ export default function SingleNode({ node, deleteNode }: NodeProps) {
     setName(event.target.value);
   }
 
+  function createNewNode() {
+    const newNode: NodeModel = { id: String(Date.now()), type: "unset" };
+    addNode(newNode, node.id);
+  }
+
+  // TODO: Refactor for different node types - probably extract into different components
+  if (node.type === "unset") {
+    return (
+      <li className="node-item">
+        <button>File</button>
+        <button>Folder</button>
+      </li>
+    );
+  }
+
   return (
     <li className="node-item">
-      <span className="folder-icon" aria-label="Folder" role="img" />
+      {node.type === "folder" ? (
+        <span className="folder-icon" aria-label="Folder" role="img" />
+      ) : (
+        <span className="file-icon" aria-label="File" role="img" />
+      )}
+
       {canEdit ? (
         <input
           type="text"
@@ -34,7 +55,14 @@ export default function SingleNode({ node, deleteNode }: NodeProps) {
           onBlur={validateNode}
         ></input>
       ) : (
-        <span>{name}</span>
+        <>
+          <span>{name}</span>
+          {node.type === "folder" && (
+            <button className="inline" onClick={createNewNode}>
+              Add Child
+            </button>
+          )}
+        </>
       )}
     </li>
   );
