@@ -9,6 +9,7 @@ interface NodeProps {
 }
 
 export default function SingleNode({ node, deleteNode, addNode }: NodeProps) {
+  // TODO: Add test around editing logic
   const [canEdit, setCanEdit] = useState(true);
   const [name, setName] = useState(node.name || "");
 
@@ -36,34 +37,35 @@ export default function SingleNode({ node, deleteNode, addNode }: NodeProps) {
       </li>
     );
   }
+  if (node.type === "folder" || node.type === "file") {
+    return (
+      <li className="node-item">
+        {node.type === "folder" ? (
+          <span className="folder-icon" aria-label="Folder" role="img" />
+        ) : (
+          <span className="file-icon" aria-label="File" role="img" />
+        )}
 
-  return (
-    <li className="node-item">
-      {node.type === "folder" ? (
-        <span className="folder-icon" aria-label="Folder" role="img" />
-      ) : (
-        <span className="file-icon" aria-label="File" role="img" />
-      )}
-
-      {canEdit ? (
-        <input
-          type="text"
-          placeholder="Enter Name..."
-          autoFocus
-          value={name}
-          onChange={updateName}
-          onBlur={validateNode}
-        ></input>
-      ) : (
-        <>
-          <span>{name}</span>
-          {node.type === "folder" && (
-            <button className="inline" onClick={createNewNode}>
-              Add Child
-            </button>
-          )}
-        </>
-      )}
-    </li>
-  );
+        {canEdit ? (
+          <input
+            type="text"
+            placeholder="Enter Name..."
+            autoFocus
+            value={name}
+            onChange={updateName}
+            onBlur={validateNode}
+          ></input>
+        ) : (
+          <>
+            <span>{name}</span>
+            {node.type === "folder" && (
+              <button className="inline" onClick={createNewNode}>
+                Add Child
+              </button>
+            )}
+          </>
+        )}
+      </li>
+    );
+  }
 }
