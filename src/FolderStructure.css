@@ -1,3 +1,32 @@
 .outer-list {
   padding-top: var(--spacing-large);
 }
+
+.folder-icon {
+  display: inline-block;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin-right: var(--spacing-small);
+  margin-left: var(--spacing-small);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("assets/folder-open-regular.svg");
+}
+
+.node-item {
+  height: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: var(--spacing-medium);
+}
+
+.node-item:marker {
+  content: "";
+}
+
+.outer-list {
+  padding-left: var(--spacing-large);
+}

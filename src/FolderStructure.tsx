@@ -12,8 +12,9 @@ export default function FolderStructure({ nodes }: FSProps) {
 
   function renderSingleNode(node: NodeModel) {
     return (
-      <li key={node.id}>
-        {node.type} {node.id}
+      <li key={node.id} className="node-item">
+        <span className="folder-icon" aria-label="Folder" role="img" />
+        New Folder
       </li>
     );
   }
