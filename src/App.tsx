@@ -1,7 +1,8 @@
 import { useState } from "react";
-import "./App.css";
 import FolderStructure from "./FolderStructure";
+import deleteNodeById from "./helper/deleteNoteById";
 import type { NodeModel } from "./types";
+import "./App.css";
 
 function App() {
   const [nodes, setNodes] = useState<NodeModel[]>([]);
@@ -13,9 +14,8 @@ function App() {
   }
 
   function deleteNode(id: string): void {
-    // TODO: Make recursive for non-top level
-    const filteredParentNodes = nodes.filter((node) => node.id !== id);
-    setNodes(filteredParentNodes);
+    const filteredNodes = deleteNodeById(nodes, id);
+    setNodes(filteredNodes);
   }
 
   return (
