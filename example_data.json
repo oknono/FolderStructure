@@ -1,0 +1,53 @@
+[
+  {
+    "type": "folder",
+    "name": "my_first_folder",
+    "id": "unique_id_1",
+    "children": [
+      {
+        "type": "file",
+        "name": "first_doc.html",
+        "id": "unique_id_2"
+      },
+      {
+        "type": "file",
+        "name": "second_doc.jpeg",
+        "id": "unique_id_3"
+      },
+      {
+        "type": "folder",
+        "name": "my_second_folder",
+        "id": "unique_id_4",
+        "children": [
+          {
+            "type": "file",
+            "name": "file_in_second_folder.txt",
+            "id": "unique_id_5"
+          },
+          {
+            "type": "folder",
+            "name": "another_folder",
+            "id": "unique_id_6",
+            "children": [
+              {
+                "type": "file",
+                "name": "random.txt",
+                "id": "unique_id_7"
+              },
+              {
+                "type": "file",
+                "name": "another_file.png",
+                "id": "unique_id_8"
+              },
+              {
+                "type": "file",
+                "name": "helloworld.html",
+                "id": "unique_id_9"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
