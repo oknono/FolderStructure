@@ -4,16 +4,17 @@ import "./SingleNode.css";
 
 interface NodeProps {
   node: NodeModel;
+  deleteNode: (id: string) => void;
 }
 
-export default function SingleNode({ node }: NodeProps) {
+export default function SingleNode({ node, deleteNode }: NodeProps) {
   const [canEdit, setCanEdit] = useState(true);
   const [name, setName] = useState(node.name || "");
 
   function validateNode() {
     setCanEdit(false);
     if (name === "") {
-      setName("DELETE");
+      deleteNode(node.id);
     }
   }
   function updateName(event: React.ChangeEvent<HTMLInputElement>) {

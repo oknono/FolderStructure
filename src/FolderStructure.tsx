@@ -4,9 +4,10 @@ import SingleNode from "./SingleNode";
 
 interface FSProps {
   nodes: NodeModel[];
+  deleteNode: (id: string) => void;
 }
 
-export default function FolderStructure({ nodes }: FSProps) {
+export default function FolderStructure({ nodes, deleteNode }: FSProps) {
   if (nodes.length === 0) {
     return <p>No data to show</p>;
   }
@@ -14,7 +15,7 @@ export default function FolderStructure({ nodes }: FSProps) {
   return (
     <ul role="tree" className="outer-list">
       {nodes.map((node: NodeModel) => (
-        <SingleNode key={node.id} node={node} />
+        <SingleNode key={node.id} node={node} deleteNode={deleteNode} />
       ))}
     </ul>
   );

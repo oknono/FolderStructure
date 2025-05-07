@@ -12,6 +12,12 @@ function App() {
     setNodes((prev) => [...prev, newFolder]);
   }
 
+  function deleteNode(id: string): void {
+    // TODO: Make recursive for non-top level
+    const filteredParentNodes = nodes.filter((node) => node.id !== id);
+    setNodes(filteredParentNodes);
+  }
+
   return (
     <>
       <header>
@@ -19,7 +25,7 @@ function App() {
       </header>
       <div className="folder-maker-container">
         <button onClick={addRootFolder}>Add folder to Root</button>
-        <FolderStructure nodes={nodes} />
+        <FolderStructure nodes={nodes} deleteNode={deleteNode} />
       </div>
     </>
   );
