@@ -6,7 +6,7 @@ This React App was created with vite. To run the code:
 npm install
 ```
 
-2. Start the dev server
+2. Start the dev server (on localhost 5173)
 
 ```
  npm run dev
