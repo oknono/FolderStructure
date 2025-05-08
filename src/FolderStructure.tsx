@@ -33,13 +33,15 @@ export default function FolderStructure({
             addNode={addNode}
             deleteNode={deleteNode}
           />
-          <ul>
-            {node.children &&
-              node.children.length > 0 &&
-              node.children.map((child: NodeModel) =>
-                renderSingleNode(child, addNode, deleteNode)
-              )}
-          </ul>
+          {node.children && node.children.length > 0 && (
+            <ul>
+              {node.children &&
+                node.children.length > 0 &&
+                node.children.map((child: NodeModel) =>
+                  renderSingleNode(child, addNode, deleteNode)
+                )}
+            </ul>
+          )}
         </React.Fragment>
       );
     } else {
