@@ -42,6 +42,6 @@ npm run test:watch
 - [x] Remove newly added Node by pressing on "Cancel" button during naming.
 - [x] User can add node as child to folder by clicking on button that shows on hover. Currently shows all the day (make sure that is keyboard accessible, will get to it if enough time)
 - [x] When clicking on "Add Child" button user should be able to choose generating a Folder or a File item by choosing the corresponding button
-- [x] (To Do) User should be able to delete any button
-- [ ] (To Do) Show JSON structure on page
+- [x] User should be able to delete any button
+- [x] Show JSON structure on page
 - [x] Use supplied datamodel. Since I decided to go with React instead of Angular I used the data model as a interface

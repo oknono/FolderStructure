@@ -7,6 +7,7 @@ import {
 import FolderStructure from "./FolderStructure";
 import type { NodeModel } from "./types";
 import "./App.css";
+import JSONViewer from "./JSONViewer";
 
 function App() {
   const [nodes, setNodes] = useState<NodeModel[]>([]);
@@ -51,6 +52,7 @@ function App() {
           addNode={addNode}
           updateNode={updateNode}
         />
+        <JSONViewer data={nodes} />
       </div>
     </>
   );

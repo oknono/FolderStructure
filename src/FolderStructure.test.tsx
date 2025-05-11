@@ -1,21 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import FolderStructure from "./FolderStructure";
 import type { NodeModel } from "./types";
 
 describe("FolderStructure Component", () => {
-  it("should render empty state message when no nodes are provided", () => {
-    render(
-      <FolderStructure
-        nodes={[]}
-        deleteNode={() => {}}
-        addNode={() => {}}
-        updateNode={() => {}}
-      />
-    );
-
-    expect(screen.getByText("No data to show")).toBeInTheDocument();
-  });
-
   it("should render a simple structure with two file nodes", () => {
     const nodes: NodeModel[] = [
       { type: "file", id: "1", name: "file 1" },

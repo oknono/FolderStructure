@@ -21,10 +21,6 @@ export default function FolderStructure({
   addNode,
   updateNode,
 }: FSProps) {
-  if (nodes.length === 0) {
-    return <p>No data to show</p>;
-  }
-
   function renderNode(
     node: NodeModel,
     addNode: (node: NodeModel, id: string) => void,

@@ -44,11 +44,17 @@ export default function SingleNode({
   if (node.type === "unset") {
     return (
       <>
-        <button onClick={() => updateNode(node.id, "type", "file")}>
-          File
+        <button
+          className="inline-button"
+          onClick={() => updateNode(node.id, "type", "file")}
+        >
+          Add File
         </button>
-        <button onClick={() => updateNode(node.id, "type", "folder")}>
-          Folder
+        <button
+          className="inline-button"
+          onClick={() => updateNode(node.id, "type", "folder")}
+        >
+          Add Folder
         </button>
       </>
     );
@@ -61,7 +67,6 @@ export default function SingleNode({
         ) : (
           <span className="file-icon" aria-label="File" role="img" />
         )}
-
         {canEdit ? (
           <>
             <input
