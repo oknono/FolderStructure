@@ -1,5 +1,5 @@
 import type { NodeModel } from "../types";
-import { deleteNodeById } from "./helpers";
+import { addNode, deleteNodeById } from "./helpers";
 
 describe("Helper Functions: manipulate NodeModel", () => {
   describe("removeNodeById", () => {
@@ -87,6 +87,76 @@ describe("Helper Functions: manipulate NodeModel", () => {
       const newStructure = deleteNodeById(testStructure, idToRemove);
       expect(newStructure).toHaveLength(2);
       expect(newStructure[0]?.children).toHaveLength(1);
+    });
+  });
+  describe("addNode", () => {
+    it("should add node to root if no id param is passed", () => {
+      const emptyStructure: NodeModel[] = [];
+      const newNode: NodeModel = { id: "1", type: "folder" };
+      const newStructure = addNode(emptyStructure, newNode);
+      expect(newStructure).toHaveLength(1);
+    });
+    it("should add node to end of root array if no id param is passed", () => {
+      const simpleStructure: NodeModel[] = [
+        {
+          type: "folder",
+          name: "my_first_folder",
+          id: "1",
+          children: [],
+        },
+      ];
+      const newNode: NodeModel = { id: "2", type: "folder" };
+      const newStructure = addNode(simpleStructure, newNode);
+      expect(newStructure).toHaveLength(2);
+      expect(newStructure[1].id).toBe("2");
+    });
+    it("should add node to children array of folder node with id passed", () => {
+      const newNode: NodeModel = { id: "4", type: "folder" };
+      const nestedStructure: NodeModel[] = [
+        {
+          type: "folder",
+          name: "my_first_folder",
+          id: "1",
+          children: [
+            {
+              type: "folder",
+              name: "my_second_folder",
+              id: "2",
+              children: [
+                {
+                  type: "folder",
+                  name: "another_folder",
+                  id: "3",
+                  children: [],
+                },
+              ],
+            },
+          ],
+        },
+      ];
+      const newStructure = addNode(nestedStructure, newNode, "2");
+      expect(newStructure[0]?.children?.[0]?.children).toHaveLength(2);
+      expect(newStructure[0]?.children?.[0]?.children?.[1].id).toBe("4");
+    });
+    it("should not add node to to non-folder node", () => {
+      const newNode: NodeModel = { id: "4", type: "folder" };
+      const nestedStructure: NodeModel[] = [
+        {
+          type: "folder",
+          name: "my_first_folder",
+          id: "1",
+          children: [
+            {
+              type: "file",
+              name: "my_second_folder",
+              id: "2",
+            },
+          ],
+        },
+      ];
+      const newStructure = addNode(nestedStructure, newNode, "2");
+      expect(newStructure[0].children).toHaveLength(1);
+      expect(newStructure[0].children?.[0]).not.toHaveProperty("children");
     });
   });
 });

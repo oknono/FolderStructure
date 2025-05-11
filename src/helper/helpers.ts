@@ -15,3 +15,30 @@ export function deleteNodeById(nodes: NodeModel[], id: string): NodeModel[] {
     return node;
   });
 }
+
+export function addNode(
+  nodes: NodeModel[],
+  newNode: NodeModel,
+  parentNodeId?: string
+): NodeModel[] {
+  // add to root folder
+  if (parentNodeId == undefined) {
+    return [...nodes, newNode];
+  }
+
+  return nodes.map((node) => {
+    if (node.id === parentNodeId && node.type === "folder") {
+      return {
+        ...node,
+        children: [...(node.children || []), newNode],
+      };
+    }
+    if (node.children && node.children.length > 0) {
+      return {
+        ...node,
+        children: addNode(node.children, newNode, parentNodeId),
+      };
+    }
+    return node;
+  });
+}
