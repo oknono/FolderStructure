@@ -24,3 +24,16 @@
 .outer-list {
   padding-left: var(--spacing-large);
 }
+
+.node-item {
+  height: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: var(--spacing-medium);
+}
+
+.node-item:marker {
+  content: "";
+}

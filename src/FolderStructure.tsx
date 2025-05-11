@@ -19,55 +19,37 @@ export default function FolderStructure({
     return <p>No data to show</p>;
   }
 
-  function renderSingleNode(
+  function renderNode(
     node: NodeModel,
     addNode: (node: NodeModel, id: string) => void,
     deleteNode: (id: string) => void
   ): JSX.Element {
-    if (node.type === "folder") {
-      return (
-        <React.Fragment key={node.id}>
+    return (
+      <>
+        <li className="node-item">
           <SingleNode
             key={node.id}
             node={node}
             addNode={addNode}
             deleteNode={deleteNode}
           />
-          {node.children && node.children.length > 0 && (
-            <ul>
-              {node.children &&
-                node.children.length > 0 &&
-                node.children.map((child: NodeModel) =>
-                  renderSingleNode(child, addNode, deleteNode)
-                )}
-            </ul>
-          )}
-        </React.Fragment>
-      );
-    } else {
-      return (
-        <React.Fragment key={node.id}>
-          <SingleNode
-            key={node.id}
-            node={node}
-            addNode={addNode}
-            deleteNode={deleteNode}
-          />
-          {node.children &&
-            node.children.length > 0 &&
-            node.children.map((child: NodeModel) =>
-              renderSingleNode(child, addNode, deleteNode)
-            )}
-        </React.Fragment>
-      );
-    }
+        </li>
+        {node.children && node.children.length > 0 && (
+          <ul>
+            {node.children &&
+              node.children.length > 0 &&
+              node.children.map((child: NodeModel) =>
+                renderNode(child, addNode, deleteNode)
+              )}
+          </ul>
+        )}
+      </>
+    );
   }
 
   return (
     <ul className="outer-list">
-      {nodes.map((node: NodeModel) =>
-        renderSingleNode(node, addNode, deleteNode)
-      )}
+      {nodes.map((node: NodeModel) => renderNode(node, addNode, deleteNode))}
     </ul>
   );
 }

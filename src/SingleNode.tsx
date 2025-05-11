@@ -31,15 +31,15 @@ export default function SingleNode({ node, deleteNode, addNode }: NodeProps) {
   // TODO: Refactor for different node types - probably extract into different components
   if (node.type === "unset") {
     return (
-      <li className="node-item">
+      <>
         <button>File</button>
         <button>Folder</button>
-      </li>
+      </>
     );
   }
   if (node.type === "folder" || node.type === "file") {
     return (
-      <li className="node-item">
+      <>
         {node.type === "folder" ? (
           <span className="folder-icon" aria-label="Folder" role="img" />
         ) : (
@@ -65,7 +65,7 @@ export default function SingleNode({ node, deleteNode, addNode }: NodeProps) {
             )}
           </>
         )}
-      </li>
+      </>
     );
   }
 }
