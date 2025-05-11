@@ -1,19 +1,5 @@
-.inline {
+.inline-button {
   padding: 0 var(--spacing-small);
-  margin-left: var(--spacing-large);
   border-radius: 0;
-  background-color: slategray;
-}
-
-.node-item {
-  height: 2rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin-left: var(--spacing-medium);
-}
-
-.node-item:marker {
-  content: "";
+  margin-left: var(--spacing-small);
 }

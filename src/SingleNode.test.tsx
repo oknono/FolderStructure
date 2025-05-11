@@ -2,8 +2,6 @@ import { render, screen } from "@testing-library/react";
 import SingleNode from "./SingleNode";
 import type { NodeModel } from "./types";
 
-// TODO: Look at mocking patterns
-
 describe("SingleNode Component", () => {
   describe("Folder node component", () => {
     it("should render a folder node with folder icon", () => {
@@ -23,39 +21,81 @@ describe("SingleNode Component", () => {
       const folderIcon = screen.getByRole("img", { name: "Folder" });
       expect(folderIcon).toBeInTheDocument();
     });
-    // TODO: Add test for checking naming behaviour
-    // TODO: Add test for checking for `Add Child` button after naming Node
-  });
-  describe("File node component", () => {
-    it("should render a file node with file icon", () => {
-      const fileNode: NodeModel = {
+    it("should render a input component when name is undefined", () => {
+      const folderNode: NodeModel = {
         id: "123",
-        type: "file",
+        type: "folder",
       };
 
       render(
-        <SingleNode node={fileNode} deleteNode={() => {}} addNode={() => {}} />
+        <SingleNode
+          node={folderNode}
+          deleteNode={() => {}}
+          addNode={() => {}}
+        />
       );
-
-      const fileIcon = screen.getByRole("img", { name: "File" });
-      expect(fileIcon).toBeInTheDocument();
+      const inputElement = screen.getByPlaceholderText("Enter Folder Name...");
+      expect(inputElement).toBeInTheDocument();
+      const cancelButton = screen.getByRole("button", { name: "Cancel" });
+      const saveButton = screen.getByRole("button", { name: "Save" });
+      expect(cancelButton).toBeInTheDocument();
+      expect(saveButton).toBeInTheDocument();
     });
-  });
-  describe("Unset node component", () => {
-    it("should render a file node with file icon", () => {
-      const fileNode: NodeModel = {
-        id: "123",
-        type: "unset",
-      };
+    describe("File node component", () => {
+      it("should render a file node with file icon", () => {
+        const fileNode: NodeModel = {
+          id: "123",
+          type: "file",
+        };
 
-      render(
-        <SingleNode node={fileNode} deleteNode={() => {}} addNode={() => {}} />
-      );
+        render(
+          <SingleNode
+            node={fileNode}
+            deleteNode={() => {}}
+            addNode={() => {}}
+          />
+        );
 
-      const fileButton = screen.getByRole("button", { name: "File" });
-      const folderButton = screen.getByRole("button", { name: "File" });
-      expect(fileButton).toBeInTheDocument();
-      expect(folderButton).toBeInTheDocument();
+        const fileIcon = screen.getByRole("img", { name: "File" });
+        expect(fileIcon).toBeInTheDocument();
+      });
+    });
+    describe("Unset node component", () => {
+      it("should render a file node with file icon", () => {
+        const fileNode: NodeModel = {
+          id: "123",
+          type: "unset",
+        };
+
+        render(
+          <SingleNode
+            node={fileNode}
+            deleteNode={() => {}}
+            addNode={() => {}}
+          />
+        );
+
+        const fileButton = screen.getByRole("button", { name: "File" });
+        const folderButton = screen.getByRole("button", { name: "File" });
+        expect(fileButton).toBeInTheDocument();
+        expect(folderButton).toBeInTheDocument();
+      });
+      it("should render a input component when name is undefined", () => {
+        const folderNode: NodeModel = {
+          id: "123",
+          type: "file",
+        };
+
+        render(
+          <SingleNode
+            node={folderNode}
+            deleteNode={() => {}}
+            addNode={() => {}}
+          />
+        );
+        const inputElement = screen.getByPlaceholderText("Enter File Name...");
+        expect(inputElement).toBeInTheDocument();
+      });
     });
   });
 });

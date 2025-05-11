@@ -9,16 +9,16 @@ interface NodeProps {
 }
 
 export default function SingleNode({ node, deleteNode, addNode }: NodeProps) {
-  // TODO: Add test around editing logic
-  const [canEdit, setCanEdit] = useState(true);
+  const [canEdit, setCanEdit] = useState(node.name === undefined);
   const [name, setName] = useState(node.name || "");
 
   function validateNode() {
     setCanEdit(false);
-    if (name === "") {
+    if (name.trim() === "") {
       deleteNode(node.id);
     }
   }
+
   function updateName(event: React.ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);
   }
@@ -28,7 +28,6 @@ export default function SingleNode({ node, deleteNode, addNode }: NodeProps) {
     addNode(newNode, node.id);
   }
 
-  // TODO: Refactor for different node types - probably extract into different components
   if (node.type === "unset") {
     return (
       <>
@@ -47,19 +46,33 @@ export default function SingleNode({ node, deleteNode, addNode }: NodeProps) {
         )}
 
         {canEdit ? (
-          <input
-            type="text"
-            placeholder="Enter Name..."
-            autoFocus
-            value={name}
-            onChange={updateName}
-            onBlur={validateNode}
-          ></input>
+          <>
+            <input
+              type="text"
+              placeholder={
+                node.type === "folder"
+                  ? "Enter Folder Name..."
+                  : "Enter File Name..."
+              }
+              autoFocus
+              value={name}
+              onChange={updateName}
+            ></input>
+            <button
+              className="inline-button"
+              onClick={() => deleteNode(node.id)}
+            >
+              Cancel
+            </button>
+            <button className="inline-button" onClick={validateNode}>
+              Save
+            </button>
+          </>
         ) : (
           <>
             <span>{name}</span>
             {node.type === "folder" && (
-              <button className="inline" onClick={createNewNode}>
+              <button className="inline-button" onClick={createNewNode}>
                 Add Child
               </button>
             )}
