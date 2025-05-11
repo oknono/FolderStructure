@@ -13,6 +13,7 @@ interface NodeProps {
   ) => void;
 }
 
+// TODO: Component too busy
 export default function SingleNode({
   node,
   deleteNode,
@@ -94,12 +95,15 @@ export default function SingleNode({
           <>
             <span>{name}</span>
             {node.type === "folder" && (
-              <button className="inline-button" onClick={createNewNode}>
+              <button
+                className="inline-button visible-on-hover"
+                onClick={createNewNode}
+              >
                 Add Child
               </button>
             )}
             <button
-              className="inline-button"
+              className="inline-button visible-on-hover"
               onClick={() => deleteNode(node.id)}
             >
               Remove Item

@@ -44,6 +44,7 @@ function App() {
       <header>
         <h1>Folder Structure Maker</h1>
       </header>
+      {/* TODO: Move into own component? Add proper layout */}
       <div className="folder-maker-container">
         <button onClick={addRootFolder}>Add folder to Root</button>
         <FolderStructure

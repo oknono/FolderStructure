@@ -3,3 +3,14 @@
   border-radius: 0;
   margin-left: var(--spacing-small);
 }
+
+.visible-on-hover {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* TODO: Make keyboard accessible */
+.node-item:hover > .visible-on-hover {
+  opacity: 1;
+  pointer-events: auto;
+}

@@ -45,3 +45,14 @@ npm run test:watch
 - [x] User should be able to delete any button
 - [x] Show JSON structure on page
 - [x] Use supplied datamodel. Since I decided to go with React instead of Angular I used the data model as a interface
+
+## To Do
+
+- More testing, especially intergration at App component level
+- Optimize performance
+  - Find better ways to update nodes, without potentially traversing the entire tree
+  - Minimize re-renders where reasonable
+- Styling:
+  - nested list markup
+  - make hidden buttons keyboard accessuble
+  - layout for folder structure and JSON viewer
