@@ -5,7 +5,12 @@ import type { NodeModel } from "./types";
 describe("FolderStructure Component", () => {
   it("should render empty state message when no nodes are provided", () => {
     render(
-      <FolderStructure nodes={[]} deleteNode={() => {}} addNode={() => {}} />
+      <FolderStructure
+        nodes={[]}
+        deleteNode={() => {}}
+        addNode={() => {}}
+        updateNode={() => {}}
+      />
     );
 
     expect(screen.getByText("No data to show")).toBeInTheDocument();
@@ -18,7 +23,12 @@ describe("FolderStructure Component", () => {
     ];
 
     const { container } = render(
-      <FolderStructure nodes={nodes} deleteNode={() => {}} addNode={() => {}} />
+      <FolderStructure
+        nodes={nodes}
+        deleteNode={() => {}}
+        addNode={() => {}}
+        updateNode={() => {}}
+      />
     );
 
     const outerList = container.querySelector("ul.outer-list");
@@ -34,7 +44,12 @@ describe("FolderStructure Component", () => {
     ];
 
     const { container } = render(
-      <FolderStructure nodes={nodes} deleteNode={() => {}} addNode={() => {}} />
+      <FolderStructure
+        nodes={nodes}
+        deleteNode={() => {}}
+        addNode={() => {}}
+        updateNode={() => {}}
+      />
     );
 
     const outerList = container.querySelector("ul.outer-list");
@@ -61,7 +76,12 @@ describe("FolderStructure Component", () => {
     ];
 
     const { container } = render(
-      <FolderStructure nodes={nodes} deleteNode={() => {}} addNode={() => {}} />
+      <FolderStructure
+        nodes={nodes}
+        deleteNode={() => {}}
+        addNode={() => {}}
+        updateNode={() => {}}
+      />
     );
     const outerList = container.querySelector("ul.outer-list");
     expect(outerList).toBeInTheDocument();

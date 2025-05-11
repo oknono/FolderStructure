@@ -8,12 +8,18 @@ interface FSProps {
   nodes: NodeModel[];
   deleteNode: (id: string) => void;
   addNode: (node: NodeModel, id: string) => void;
+  updateNode: <K extends keyof NodeModel>(
+    id: string,
+    property: K,
+    value: NodeModel[K]
+  ) => void;
 }
 
 export default function FolderStructure({
   nodes,
   deleteNode,
   addNode,
+  updateNode,
 }: FSProps) {
   if (nodes.length === 0) {
     return <p>No data to show</p>;
@@ -27,7 +33,12 @@ export default function FolderStructure({
     return (
       <React.Fragment key={node.id}>
         <li className="node-item">
-          <SingleNode node={node} addNode={addNode} deleteNode={deleteNode} />
+          <SingleNode
+            node={node}
+            addNode={addNode}
+            deleteNode={deleteNode}
+            updateNode={updateNode}
+          />
         </li>
         {node.children && node.children.length > 0 && (
           <ul>

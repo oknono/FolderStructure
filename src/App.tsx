@@ -27,6 +27,17 @@ function App() {
     setNodes(filteredNodes);
   }
 
+  // TODO: Must be more efficient way
+  function updateNode<K extends keyof NodeModel>(
+    nodeId: string,
+    property: K,
+    value: NodeModel[K]
+  ): void {
+    console.log(
+      `Updating Node ${nodeId} property '${property}' with value: ${value}`
+    );
+  }
+
   return (
     <>
       <header>
@@ -38,6 +49,7 @@ function App() {
           nodes={nodes}
           deleteNode={deleteNode}
           addNode={addNode}
+          updateNode={updateNode}
         />
       </div>
     </>

@@ -6,9 +6,19 @@ interface NodeProps {
   node: NodeModel;
   deleteNode: (id: string) => void;
   addNode: (node: NodeModel, id: string) => void;
+  updateNode: <K extends keyof NodeModel>(
+    id: string,
+    property: K,
+    value: NodeModel[K]
+  ) => void;
 }
 
-export default function SingleNode({ node, deleteNode, addNode }: NodeProps) {
+export default function SingleNode({
+  node,
+  deleteNode,
+  addNode,
+  updateNode,
+}: NodeProps) {
   const [canEdit, setCanEdit] = useState(node.name === undefined);
   const [name, setName] = useState(node.name || "");
 
@@ -16,9 +26,12 @@ export default function SingleNode({ node, deleteNode, addNode }: NodeProps) {
     setCanEdit(false);
     if (name.trim() === "") {
       deleteNode(node.id);
+    } else {
+      updateNode(node.id, "name", name);
     }
   }
 
+  // TODO: Make uncontrolled value - we only care about name on validation where we update name property of the node
   function updateName(event: React.ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);
   }
@@ -31,8 +44,12 @@ export default function SingleNode({ node, deleteNode, addNode }: NodeProps) {
   if (node.type === "unset") {
     return (
       <>
-        <button>File</button>
-        <button>Folder</button>
+        <button onClick={() => updateNode(node.id, "type", "file")}>
+          File
+        </button>
+        <button onClick={() => updateNode(node.id, "type", "folder")}>
+          Folder
+        </button>
       </>
     );
   }

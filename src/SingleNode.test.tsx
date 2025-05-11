@@ -15,6 +15,7 @@ describe("SingleNode Component", () => {
           node={folderNode}
           deleteNode={() => {}}
           addNode={() => {}}
+          updateNode={() => {}}
         />
       );
 
@@ -32,6 +33,7 @@ describe("SingleNode Component", () => {
           node={folderNode}
           deleteNode={() => {}}
           addNode={() => {}}
+          updateNode={() => {}}
         />
       );
       const inputElement = screen.getByPlaceholderText("Enter Folder Name...");
@@ -53,6 +55,7 @@ describe("SingleNode Component", () => {
             node={fileNode}
             deleteNode={() => {}}
             addNode={() => {}}
+            updateNode={() => {}}
           />
         );
 
@@ -72,6 +75,7 @@ describe("SingleNode Component", () => {
             node={fileNode}
             deleteNode={() => {}}
             addNode={() => {}}
+            updateNode={() => {}}
           />
         );
 
@@ -91,6 +95,7 @@ describe("SingleNode Component", () => {
             node={folderNode}
             deleteNode={() => {}}
             addNode={() => {}}
+            updateNode={() => {}}
           />
         );
         const inputElement = screen.getByPlaceholderText("Enter File Name...");
