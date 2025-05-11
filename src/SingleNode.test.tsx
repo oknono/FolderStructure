@@ -79,8 +79,8 @@ describe("SingleNode Component", () => {
           />
         );
 
-        const fileButton = screen.getByRole("button", { name: "File" });
-        const folderButton = screen.getByRole("button", { name: "File" });
+        const fileButton = screen.getByRole("button", { name: "Add File" });
+        const folderButton = screen.getByRole("button", { name: "Add Folder" });
         expect(fileButton).toBeInTheDocument();
         expect(folderButton).toBeInTheDocument();
       });
