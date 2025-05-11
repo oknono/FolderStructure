@@ -49,6 +49,7 @@ npm run test:watch
 ## To Do
 
 - More testing, especially intergration at App component level
+- Investigate better ways to work with models in React
 - Optimize performance
   - Find better ways to update nodes, without potentially traversing the entire tree
   - Minimize re-renders where reasonable
@@ -56,3 +57,9 @@ npm run test:watch
   - nested list markup
   - make hidden buttons keyboard accessuble
   - layout for folder structure and JSON viewer
+
+## Screenshots
+
+<img width="817" alt="Screenshot 2025-05-11 at 5 16 42 PM" src="https://github.com/user-attachments/assets/a1cbad53-7601-4570-81a4-6d857b9d1964" />
+<img width="782" alt="Screenshot 2025-05-11 at 5 17 24 PM" src="https://github.com/user-attachments/assets/55134a89-52ce-4ee7-883f-d81b164c8731" />
+<img width="766" alt="Screenshot 2025-05-11 at 5 17 35 PM" src="https://github.com/user-attachments/assets/683079ea-ac31-4039-bb56-6fcb66e06352" />
