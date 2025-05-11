@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   addNode as addNodeToStructure,
   deleteNodeById,
+  updateNodeById,
 } from "./helper/helpers";
 import FolderStructure from "./FolderStructure";
 import type { NodeModel } from "./types";
@@ -33,9 +34,8 @@ function App() {
     property: K,
     value: NodeModel[K]
   ): void {
-    console.log(
-      `Updating Node ${nodeId} property '${property}' with value: ${value}`
-    );
+    const updatedNodes = updateNodeById(nodes, nodeId, property, value);
+    setNodes(updatedNodes);
   }
 
   return (

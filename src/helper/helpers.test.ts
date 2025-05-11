@@ -1,4 +1,4 @@
-import { addNode, deleteNodeById } from "./helpers";
+import { addNode, deleteNodeById, updateNodeById } from "./helpers";
 import type { NodeModel } from "../types";
 
 describe("Helper Functions: manipulate NodeModel", () => {
@@ -64,7 +64,7 @@ describe("Helper Functions: manipulate NodeModel", () => {
     });
     it("should return an same structure if id doesn't match any node", () => {
       const idToRemove = "nonExistingId";
-      const testStructure: NodeModel[] = [
+      const nestedStructure: NodeModel[] = [
         {
           type: "folder",
           name: "my_first_folder",
@@ -84,7 +84,7 @@ describe("Helper Functions: manipulate NodeModel", () => {
           id: "id_2",
         },
       ];
-      const newStructure = deleteNodeById(testStructure, idToRemove);
+      const newStructure = deleteNodeById(nestedStructure, idToRemove);
       expect(newStructure).toHaveLength(2);
       expect(newStructure[0]?.children).toHaveLength(1);
     });
@@ -158,5 +158,63 @@ describe("Helper Functions: manipulate NodeModel", () => {
       expect(newStructure[0].children).toHaveLength(1);
       expect(newStructure[0].children?.[0]).not.toHaveProperty("children");
     });
+  });
+  describe("updateNodeById", () => {
+    it("should return an empty array when structure is empty", () => {
+      const emptyStructure: NodeModel[] = [];
+      const newStructure = updateNodeById(
+        emptyStructure,
+        "42",
+        "name",
+        "hello"
+      );
+      expect(newStructure).toHaveLength(0);
+    });
+    it("should update a non-nested value", () => {
+      const new_name = "my_renamed_folder";
+      const simpleStructure: NodeModel[] = [
+        {
+          type: "folder",
+          name: "my_first_folder",
+          id: "42",
+          children: [],
+        },
+      ];
+      const newStructure = updateNodeById(
+        simpleStructure,
+        "42",
+        "name",
+        new_name
+      );
+      expect(newStructure[0].name).toEqual(new_name);
+    });
+    it("should update a nested value", () => {
+      const new_type = "folder";
+      const nestedStructure: NodeModel[] = [
+        {
+          type: "folder",
+          name: "my_first_folder",
+          id: "1",
+          children: [
+            {
+              type: "unset",
+              name: "my_second_folder",
+              id: "2",
+            },
+          ],
+        },
+      ];
+      const newStructure = updateNodeById(
+        nestedStructure,
+        "2",
+        "type",
+        new_type
+      );
+      expect(newStructure[0].children?.[0].type).toEqual(new_type);
+    });
+    // it("should add a children property with an empty array value when updating type to folder", () => {});
+    // it("should return the same object if id is invalid", () => {});
+    // it("should return the same object if property invalid", () => {});
+    // it("should return the same object if property value is  invalid", () => {});
   });
 });

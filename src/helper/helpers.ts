@@ -42,3 +42,26 @@ export function addNode(
     return node;
   });
 }
+
+export function updateNodeById<K extends keyof NodeModel>(
+  nodes: NodeModel[],
+  nodeId: string,
+  property: K,
+  value: NodeModel[K]
+): NodeModel[] {
+  return nodes.map((node) => {
+    if (node.id === nodeId) {
+      return {
+        ...node,
+        [property]: value,
+      };
+    }
+    if (node.children && node.children.length > 0) {
+      return {
+        ...node,
+        children: updateNodeById(node.children, nodeId, property, value),
+      };
+    }
+    return node;
+  });
+}
