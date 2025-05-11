@@ -93,6 +93,12 @@ export default function SingleNode({
                 Add Child
               </button>
             )}
+            <button
+              className="inline-button"
+              onClick={() => deleteNode(node.id)}
+            >
+              Remove Item
+            </button>
           </>
         )}
       </>
