@@ -25,14 +25,9 @@ export default function FolderStructure({
     deleteNode: (id: string) => void
   ): JSX.Element {
     return (
-      <>
+      <React.Fragment key={node.id}>
         <li className="node-item">
-          <SingleNode
-            key={node.id}
-            node={node}
-            addNode={addNode}
-            deleteNode={deleteNode}
-          />
+          <SingleNode node={node} addNode={addNode} deleteNode={deleteNode} />
         </li>
         {node.children && node.children.length > 0 && (
           <ul>
@@ -43,7 +38,7 @@ export default function FolderStructure({
               )}
           </ul>
         )}
-      </>
+      </React.Fragment>
     );
   }
 
