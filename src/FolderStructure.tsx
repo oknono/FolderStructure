@@ -1,8 +1,8 @@
-import type { NodeModel } from "./types";
-import "./FolderStructure.css";
+import React from "react";
 import SingleNode from "./SingleNode";
 import type { JSX } from "react";
-import React from "react";
+import type { NodeModel } from "./types";
+import "./FolderStructure.css";
 
 interface FSProps {
   nodes: NodeModel[];

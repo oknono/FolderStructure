@@ -1,5 +1,5 @@
-import type { NodeModel } from "../types";
 import { addNode, deleteNodeById } from "./helpers";
+import type { NodeModel } from "../types";
 
 describe("Helper Functions: manipulate NodeModel", () => {
   describe("removeNodeById", () => {

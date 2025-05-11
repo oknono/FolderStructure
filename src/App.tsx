@@ -1,11 +1,11 @@
 import { useState } from "react";
-import FolderStructure from "./FolderStructure";
-import type { NodeModel } from "./types";
-import "./App.css";
 import {
   addNode as addNodeToStructure,
   deleteNodeById,
 } from "./helper/helpers";
+import FolderStructure from "./FolderStructure";
+import type { NodeModel } from "./types";
+import "./App.css";
 
 function App() {
   const [nodes, setNodes] = useState<NodeModel[]>([]);
