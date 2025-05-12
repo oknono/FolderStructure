@@ -48,16 +48,18 @@ npm run test:watch
 
 ## To Do
 
-- A folder node should always have children property; and is the only node type that should have this property. Stricter typechecking, currently checking both for `type === "folder"` and `children` property
-- Add more testing, especially intergration at `<App />` component level
-- Investigate better ways to work with models in React
+- A folder node should always have children property; and is the only node type that should have this property. Add stricter typechecking
 - Optimize performance
-  - Find better ways to update nodes, without potentially traversing the entire tree
   - Minimize re-renders where reasonable
+    - Wrap callbacks with useCallback and update state based on previous state to remove all dependencies
+    - ? UseMemo for Nodes ?
+    - Find better ways to update nodes, without potentially traversing the entire tree
 - Styling:
   - nested list markup
   - make hidden buttons keyboard accessuble
   - layout for folder structure and JSON viewer
+- Add more testing, especially intergration at `<App />` component level
+- Investigate better ways to work with models in React
 
 ## Screenshots
 
